@@ -15,7 +15,7 @@ This projects packs the [stackdriver agent](https://cloud.google.com/monitoring/
 | NGINX_STATUS_URL       | -                        | URL to the NGINX Status URL                                            |
 
 ## Google Cloud Platform
-    For authorization information read the [official documentation](https://cloud.google.com/monitoring/agent/install-agent).
+For authorization information read the [official documentation](https://cloud.google.com/monitoring/agent/install-agent).
 
 ## Example
 
