@@ -13,10 +13,10 @@ This projects packs the [stackdriver agent](https://cloud.google.com/monitoring/
 | ---------------------- |:------------------------:| ---------------------------------------------------------------------- |
 | STACKDRIVER_API_KEY    | -                        | Stackdrivers API Key, not needed when running on Google Cloud Platform |
 | NGINX_STATUS_URL       | -                        | URL to the NGINX Status URL                                            |
-| REDIS_#_NODE           | -                        | Name of Redis Node                                                     |
+| REDIS_#_NAME           | -                        | Name of Redis instance                                                 |
 | REDIS_#_HOST           | localhost                | Addres of Redis Node                                                   |
 | REDIS_#_PORT           | 6379                     | Port of Redis Node                                                     |
-| REDIS_#_TIMEOUT        | 2000                     | Port of Redis Node                                                     |
+| REDIS_#_TIMEOUT        | 2000                     | Timeout when connecting to Redis Node                                  |
 
 _The symbol # represents a continuous number starting at 0_
 
