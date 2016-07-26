@@ -20,7 +20,7 @@ name=$(get_var ${no} name)
 host=$(get_var ${no} host)
 port=$(get_var ${no} port)
 timeout=$(get_var ${no} timeout)
-echo "Configuring redis instance \"${name}\"..."
+echo "Configuring Redis instance \"${name}\"..."
 if [[ "${no}" == "0" ]]; then
 cat <<EOL > "${file}"
 LoadPlugin redis
