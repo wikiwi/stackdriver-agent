@@ -6,7 +6,7 @@
 # of the MIT license. See the LICENSE file for details.
 
 if [ -n "${NGINX_STATUS_URL}" ]; then
-echo Configuring nginx config...
+echo Configuring nginx...
 cat <<EOL > /opt/stackdriver/collectd/etc/collectd.d/nginx.conf
 LoadPlugin nginx
 <Plugin "nginx">

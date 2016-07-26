@@ -15,12 +15,12 @@ get_var() {
   echo $(indir="REDIS_${1}_${2^^}"; echo ${!indir})
 }
 
-while [ -n "$(get_var ${no} name)" ]; do
-name=$(get_var ${no} name)
+while [ -n "$(get_var ${no} node)" ]; do
+node=$(get_var ${no} node)
 host=$(get_var ${no} host)
 port=$(get_var ${no} port)
 timeout=$(get_var ${no} timeout)
-echo "Configuring Redis instance \"${name}\"..."
+echo "Configuring Redis node \"${node}\"..."
 if [[ "${no}" == "0" ]]; then
 cat <<EOL > "${file}"
 LoadPlugin redis
@@ -28,7 +28,7 @@ LoadPlugin redis
 EOL
 fi
 cat <<EOL >> "${file}"
-  <Node "${name}">
+  <Node "${node}">
     Host "${host:-"localhost"}"
     Port "${port:-"6379"}"
     Timeout ${timeout:-"2000"}

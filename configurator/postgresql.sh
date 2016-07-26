@@ -15,13 +15,13 @@ get_var() {
   echo $(indir="POSTGRESQL_${1}_${2^^}"; echo ${!indir})
 }
 
-while [ -n "$(get_var ${no} name)" ]; do
-name=$(get_var ${no} name)
+while [ -n "$(get_var ${no} db)" ]; do
+db=$(get_var ${no} db)
 host=$(get_var ${no} host)
 port=$(get_var ${no} port)
 user=$(get_var ${no} user)
 password=$(get_var ${no} password)
-echo "Configuring PostgreSQL instance \"${name}\"..."
+echo "Configuring PostgreSQL database \"${db}\"..."
 if [[ "${no}" == "0" ]]; then
 cat <<EOL > "${file}"
 LoadPlugin postgresql
@@ -29,7 +29,7 @@ LoadPlugin postgresql
 EOL
 fi
 cat <<EOL >> "${file}"
-  <Database "${name}">
+  <Database "${db}">
     Host "${host:-"localhost"}"
     Port "${port:-"5432"}"
     User "${user:-"postgres"}"

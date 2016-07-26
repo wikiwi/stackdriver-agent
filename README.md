@@ -13,11 +13,11 @@ This projects packs the [stackdriver agent](https://cloud.google.com/monitoring/
 | ---------------------- |:------------------------:| ---------------------------------------------------------------------- |
 | STACKDRIVER_API_KEY    | -                        | Stackdrivers API Key, not needed when running on Google Cloud Platform |
 | NGINX_STATUS_URL       | -                        | URL to the NGINX Status URL                                            |
-| REDIS_#_NAME           | -                        | Name of Redis instance                                                 |
+| REDIS_#_NODE           | -                        | Name of Redis Node                                                     |
 | REDIS_#_HOST           | localhost                | Address of Redis Node                                                  |
 | REDIS_#_PORT           | 6379                     | Port of Redis Node                                                     |
 | REDIS_#_TIMEOUT        | 2000                     | Timeout when connecting to Redis Node                                  |
-| POSTGRESQL_#_NAME      | -                        | Name of PostgreSQL instance                                            |
+| POSTGRESQL_#_DB        | -                        | Database in PostgreSQL instance                                        |
 | POSTGRESQL_#_HOST      | localhost                | Addres of PostgreSQL database                                          |
 | POSTGRESQL_#_PORT      | 5432                     | Port of PostgreSQL database                                            |
 | POSTGRESQL_#_USER      | postgres                 | Username to connect to PostgreSQL database                             |
