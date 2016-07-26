@@ -8,7 +8,7 @@ LABEL org.label-schema.vcs-url="https://github.com/wikiwi/stackdriver-agent" \
 RUN apt-get update && apt-get install -y curl && \
     curl -o /etc/apt/sources.list.d/stackdriver.list https://repo.stackdriver.com/jessie.list && \
     curl --silent https://app.stackdriver.com/RPM-GPG-KEY-stackdriver | apt-key add - && \
-    apt-get update && apt-get install -y stackdriver-agent libhiredis-dev
+    apt-get update && apt-get install -y stackdriver-agent libhiredis-dev libpq-dev
 
 COPY collectd-gcm.conf.tmpl /opt/stackdriver/collectd/etc/collectd-gcm.conf.tmpl
 COPY collectd.conf.tmpl /opt/stackdriver/collectd/etc/collectd.conf.tmpl
