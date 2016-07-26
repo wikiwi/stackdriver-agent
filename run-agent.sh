@@ -32,6 +32,13 @@ trap stopDaemon SIGINT SIGTERM
 touch /var/log/collectd.log
 tail /var/log/collectd.log -f &
 LOG_PID=$!
+
+# echo Waiting for collectd daemon to start
+while [ ! -f "${PID_FILE}" ] ; do
+  sleep 1;
+done
+
+# Waiting for collectd daemon to stop
 while [ -f "${PID_FILE}" ] ; do
   sleep 1;
 done
