@@ -10,7 +10,8 @@ RUN apt-get update && apt-get install -y curl && \
     curl --silent https://app.stackdriver.com/RPM-GPG-KEY-stackdriver | apt-key add - && \
     apt-get update && apt-get install -y stackdriver-agent
 
-COPY log.conf /opt/stackdriver/collectd/etc/collectd.d
+COPY collectd-gcm.conf.tmpl /opt/stackdriver/collectd/etc/collectd-gcm.conf.tmpl
+COPY collectd.conf.tmpl /opt/stackdriver/collectd/etc/collectd.conf.tmpl
 COPY run-agent.sh /usr/bin/run-agent.sh
 COPY configurator /opt/configurator
 

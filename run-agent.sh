@@ -12,13 +12,13 @@ set -eo pipefail
 source /opt/configurator/*.sh
 
 if curl metadata.google.internal -i > /dev/null 2>&1; then
-  /opt/stackdriver/stack-config --write-gcm
+  /opt/stackdriver/stack-config --write-gcm --no-start
 else
   if [ -z "${STACKDRIVER_API_KEY}" ]; then
     echo "Need to specify STACKDRIVER_API_KEY as an environment variable."
     exit 1
   else
-    /opt/stackdriver/stack-config --api-key "${STACKDRIVER_API_KEY}"
+    /opt/stackdriver/stack-config --api-key "${STACKDRIVER_API_KEY}" --no-start
   fi
 fi
 
@@ -27,6 +27,7 @@ stopDaemon() {
   kill -9 ${LOG_PID}
 }
 
+service stackdriver-agent start
 trap stopDaemon SIGINT SIGTERM
 touch /var/log/collectd.log
 tail /var/log/collectd.log -f &

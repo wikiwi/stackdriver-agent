@@ -1,0 +1,17 @@
+Interval 60
+
+LoadPlugin "logfile"
+<Plugin "logfile">
+  LogLevel "info"
+  File "/var/log/collectd.log"
+  Timestamp true
+</Plugin>
+
+LoadPlugin write_gcm
+<Plugin "write_gcm">
+  PrettyPrintJSON false
+</Plugin>
+
+# if you have other config, especially for plugins, you can drop them
+# into this directory
+Include "/opt/stackdriver/collectd/etc/collectd.d"
