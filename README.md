@@ -1,7 +1,7 @@
 # stackdriver-agent
 *__Warning__: This is an early alpha version without commitment for backwards compatibility.*
 
-This projects packs the [stackdriver agent](https://cloud.google.com/monitoring/agent/install-agent) in a Docker Container with easy to use configuration based on Environment Variables.
+This projects packs the [stackdriver agent](https://cloud.google.com/monitoring/agent/install-agent) in a Docker Container with easy to use configuration based on Environment Variables. No other metrics other than those configured through the Environment Variables are collected by the agent.
 
 [![Docker Hub Widget]][Docker Hub]
 
