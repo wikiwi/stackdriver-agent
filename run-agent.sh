@@ -9,7 +9,7 @@ PID_FILE=/var/run/stackdriver-agent.pid
 
 set -eo pipefail
 
-source /opt/configurator/*.sh
+for f in /opt/configurator/*.sh; do source $f; done
 
 if curl metadata.google.internal -i > /dev/null 2>&1; then
   /opt/stackdriver/stack-config --write-gcm --no-start
