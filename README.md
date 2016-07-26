@@ -20,7 +20,7 @@ This projects packs the [stackdriver agent](https://cloud.google.com/monitoring/
 | POSTGRESQL_#_NAME      | -                        | Name of PostgreSQL instance                                            |
 | POSTGRESQL_#_HOST      | localhost                | Addres of PostgreSQL database                                          |
 | POSTGRESQL_#_PORT      | 5432                     | Port of PostgreSQL database                                            |
-| POSTGRESQL_#_USER      | postgresql               | Username to connect to PostgreSQL database                             |
+| POSTGRESQL_#_USER      | postgres                 | Username to connect to PostgreSQL database                             |
 | POSTGRESQL_#_PASSWORD  | -                        | Password to connect to PostgreSQL database                             |
 
 _The symbol # represents a continuous number starting at 0_
