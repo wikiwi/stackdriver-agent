@@ -29,8 +29,13 @@ _The symbol # represents a continuous number starting at 0_
 ## Google Cloud Platform
 For authorization information read the [official documentation](https://cloud.google.com/monitoring/agent/install-agent).
 
-## Example
 
+## Example
+    # Monitor nginx
     docker run -e NGINX_STATUS_URL=http://my-nginx:8080/nginx_status \
+               wikiwi/stackdriver-agent
+
+    # Monitor host
+    docker run -e MONITOR_HOST=true -v /proc:/mnt/proc:ro --privileged \
                wikiwi/stackdriver-agent
 
