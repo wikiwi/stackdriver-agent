@@ -12,6 +12,7 @@ This projects packs the [stackdriver agent](https://cloud.google.com/monitoring/
 | Name                   | Default                  | Description                                                            |
 | ---------------------- |:------------------------:| ---------------------------------------------------------------------- |
 | STACKDRIVER_API_KEY    | -                        | Stackdrivers API Key, not needed when running on Google Cloud Platform |
+| MONITOR_HOST           | false                    | Monitor host resources like memory, cpu, disk, etc..                   |
 | NGINX_STATUS_URL       | -                        | URL to the NGINX Status URL                                            |
 | REDIS_#_NODE           | -                        | Name of Redis Node                                                     |
 | REDIS_#_HOST           | localhost                | Address of Redis Node                                                  |
