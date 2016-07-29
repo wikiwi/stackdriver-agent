@@ -3,10 +3,10 @@
 
 This projects packs the [stackdriver agent](https://cloud.google.com/monitoring/agent/install-agent) in a Docker Container with easy to use configuration based on Environment Variables. No other metrics other than those configured through the Environment Variables are collected by the agent.
 
-[![Docker Hub Widget]][Docker Hub]
+[![MicroBadger Image Widget]][MicroBadger URL]
 
-[Docker Hub]: https://hub.docker.com/r/wikiwi/stackdriver-agent
-[Docker Hub Widget]: https://img.shields.io/docker/pulls/wikiwi/stackdriver-agent.svg
+[MicroBadger URL]: http://microbadger.com/#/images/wikiwi/stackdriver-agent
+[MicroBadger Image Widget]: https://images.microbadger.com/badges/image/wikiwi/stackdriver-agent.svg
 
 ## Environment Variables
 | Name                   | Default                  | Description                                                            |
