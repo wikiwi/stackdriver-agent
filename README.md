@@ -70,4 +70,4 @@ spec:
         hostPath:
           path: /proc
 ```
-Where additional parameters (such as redis monitoring) can be enabled / disabled by adding or removing the key/value pairs inside the `env` field. 
+Where additional parameters (such as redis monitoring) can be enabled / disabled by adding or removing key/value pairs inside the `env` field. 
