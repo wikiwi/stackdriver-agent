@@ -71,3 +71,4 @@ spec:
           path: /proc
 ```
 Where additional parameters (such as redis monitoring) can be enabled / disabled by adding or removing key/value pairs inside the `env` field. 
+_*Note: If you want to disable host monitoring, remove the respective key/value pair as well as the `securityContext`, `volumeMounts`, and `volumes` fields. 
