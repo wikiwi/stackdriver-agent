@@ -39,3 +39,35 @@ For authorization information read the [official documentation](https://cloud.go
     docker run -e MONITOR_HOST=true -v /proc:/mnt/proc:ro --privileged \
                wikiwi/stackdriver-agent
 
+
+## Running in a Kubernetes Cluster in GKE
+To ensure that the agent is running on each one of your nodes in a Kubernetes cluster managed by GKE, deploy the agent as a `DaemonSet` using the example `stackdriver-agent.yml` file:
+```
+The way I was able to get around the issue with the agent's incompatibility with the new Chromium image was to deploy the agent as a container running in privileged mode (conveniently already built: https://github.com/wikiwi/stackdriver-agent) within a kubernetes DaemonSet so it runs on each host. Here's the YAML for what I ended up using: 
+
+    apiVersion: extensions/v1beta1
+    kind: DaemonSet
+    metadata:
+      name: stackdriver-agent
+    spec:
+      template:
+        metadata:
+          labels:
+          app: stackdriver-agent
+        spec:
+          containers:
+          - name: stackdriver-agent
+            image: wikiwi/stackdriver-agent
+            securityContext:
+              privileged: true
+            volumeMounts:
+            - mountPath: /mnt/proc
+              name: procmnt
+            env:
+              - name: MONITOR_HOST
+                value: "true"
+          volumes:
+          - name: procmnt
+            hostPath:
+              path: /proc
+```
