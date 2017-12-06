@@ -43,7 +43,7 @@ For authorization information read the [official documentation](https://cloud.go
 ## Running in a Kubernetes Cluster in GKE
 To ensure that the agent is running on each one of your nodes in a Kubernetes cluster managed by GKE, deploy the agent as a `DaemonSet` by adjusting the example `stackdriver-agent.yml` file to your needs:
 ```
-
+## stackdriver-agent.yml ##
 apiVersion: extensions/v1beta1
 kind: DaemonSet
 metadata:
