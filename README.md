@@ -39,3 +39,37 @@ For authorization information read the [official documentation](https://cloud.go
     docker run -e MONITOR_HOST=true -v /proc:/mnt/proc:ro --privileged \
                wikiwi/stackdriver-agent
 
+
+## Running in a Kubernetes Cluster in GKE
+To ensure that the agent is running on each one of your nodes in a Kubernetes cluster managed by GKE, deploy the agent as a `DaemonSet` by adjusting the example `stackdriver-agent.yml` file to your needs:
+```
+## stackdriver-agent.yml ##
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  name: stackdriver-agent
+spec:
+  template:
+    metadata:
+      labels:
+      app: stackdriver-agent
+    spec:
+      containers:
+      - name: stackdriver-agent
+        image: wikiwi/stackdriver-agent
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - mountPath: /mnt/proc
+          name: procmnt
+        env:
+          - name: MONITOR_HOST
+            value: "true"
+      volumes:
+      - name: procmnt
+        hostPath:
+          path: /proc
+```
+Where additional parameters (such as redis monitoring) can be enabled / disabled by adding or removing key/value pairs inside the `env` field. 
+
+_*Note: If you want to disable host monitoring, remove the respective key/value pair as well as the `securityContext`, `volumeMounts`, and `volumes` fields._
