@@ -1,98 +1,141 @@
+#!/bin/bash
+
+# Copyright (C) 2016 wikiwi.io
+#
+# This software may be modified and distributed under the terms
+# of the MIT license. See the LICENSE file for details.
+
+if [ -n "${COUCHDB_STATUS_URL}" ]; then
+echo Configuring couchdb...
+cat <<EOL > /opt/stackdriver/collectd/etc/collectd.d/couchdb.conf
 # This is the monitoring configuration for CouchDB.
-# Look for COUCHDB_HOST and COUCHDB_PORT to adjust your configuration file.
+#
+# Adapted from
+# https://raw.githubusercontent.com/Stackdriver/stackdriver-agent-service-configs/master/etc/collectd.d/couchdb.conf
+# for use in a CouchDB 2.x cluster.
 LoadPlugin curl_json
 <Plugin "curl_json">
-    # When using non-standard CouchDB configurations, replace the below with
-    #<URL "http://COUCHDB_HOST:COUCHDB_PORT/_stats">
-    <URL "http://localhost:5984/_stats">
+    # For example:
+    # <URL "http://user:pass@couchdb-couchdb-0.couchdb-couchdb.default.svc.cluster.local:5984/_node/_local/_stats">
+    <URL "${COUCHDB_STATUS_URL}">
         Instance "couchdb"
 
-        <Key "couchdb/database_writes/current">
+        <Key "couchdb/database_writes/value">
             Type "counter"
+            Instance "database_writes"
         </Key>
-        <Key "couchdb/database_reads/current">
+        <Key "couchdb/database_reads/value">
             Type "counter"
+            Instance "database_reads"
         </Key>
-        <Key "couchdb/open_databases/current">
+        <Key "couchdb/open_databases/value">
             Type "gauge"
+            Instance "open_databases"
         </Key>
-        <Key "couchdb/open_os_files/current">
+        <Key "couchdb/open_os_files/value">
             Type "gauge"
+            Instance "open_os_files"
         </Key>
-        <Key "couchdb/request_time/current">
-            Type "gauge"
-        </Key>
-        <Key "httpd/bulk_requests/current">
+        # couchdb/request_time is a histogram. The values I'd most like
+        # to export as metrics --
+        # couchdb/request_time/value/percentile[{50,75,90,95,99,999}] --
+        # are not available. Hence, we will not export anything from
+        # couchdb/request_time.
+        <Key "couchdb/httpd/bulk_requests/value">
             Type "counter"
+            Instance "httpd/bulk_requests"
         </Key>
-        <Key "httpd/requests/current">
+        <Key "couchdb/httpd/requests/value">
             Type "counter"
+            Instance "httpd/requests"
         </Key>
-        <Key "httpd/temporary_view_reads/current">
+        <Key "couchdb/httpd/temporary_view_reads/value">
             Type "counter"
+            Instance "httpd/temporary_view_reads"
         </Key>
-        <Key "httpd/view_reads/current">
+        <Key "couchdb/httpd/view_reads/value">
             Type "counter"
+            Instance "httpd/view_reads"
         </Key>
-        <Key "httpd_request_methods/COPY/current">
+        <Key "couchdb/httpd_request_methods/COPY/value">
             Type "counter"
+            Instance "httpd_request_methods/COPY"
         </Key>
-        <Key "httpd_request_methods/DELETE/current">
+        <Key "couchdb/httpd_request_methods/DELETE/value">
             Type "counter"
+            Instance "httpd_request_methods/DELETE"
         </Key>
-        <Key "httpd_request_methods/GET/current">
+        <Key "couchdb/httpd_request_methods/GET/value">
             Type "counter"
+            Instance "httpd_request_methods/GET"
         </Key>
-        <Key "httpd_request_methods/HEAD/current">
+        <Key "couchdb/httpd_request_methods/HEAD/value">
             Type "counter"
+            Instance "httpd_request_methods/HEAD"
         </Key>
-        <Key "httpd_request_methods/MOVE/current">
+        <Key "couchdb/httpd_request_methods/OPTIONS/value">
             Type "counter"
+            Instance "httpd_request_methods/OPTIONS"
         </Key>
-        <Key "httpd_request_methods/POST/current">
+        <Key "couchdb/httpd_request_methods/POST/value">
             Type "counter"
+            Instance "httpd_request_methods/POST"
         </Key>
-        <Key "httpd_request_methods/PUT/current">
+        <Key "couchdb/httpd_request_methods/PUT/value">
             Type "counter"
+            Instance "httpd_request_methods/PUT"
         </Key>
-        <Key "httpd_status_codes/200/current">
+        <Key "couchdb/httpd_status_codes/200/value">
             Type "counter"
+            Instance "httpd_status_codes/200"
         </Key>
-        <Key "httpd_status_codes/201/current">
+        <Key "couchdb/httpd_status_codes/201/value">
             Type "counter"
+            Instance "httpd_status_codes/201"
         </Key>
-        <Key "httpd_status_codes/202/current">
+        <Key "couchdb/httpd_status_codes/202/value">
             Type "counter"
+            Instance "httpd_status_codes/202"
         </Key>
-        <Key "httpd_status_codes/301/current">
+        <Key "couchdb/httpd_status_codes/301/value">
             Type "counter"
+            Instance "httpd_status_codes/301"
         </Key>
-        <Key "httpd_status_codes/304/current">
+        <Key "couchdb/httpd_status_codes/304/value">
             Type "counter"
+            Instance "httpd_status_codes/304"
         </Key>
-        <Key "httpd_status_codes/400/current">
+        <Key "couchdb/httpd_status_codes/400/value">
             Type "counter"
+            Instance "httpd_status_codes/400"
         </Key>
-        <Key "httpd_status_codes/401/current">
+        <Key "couchdb/httpd_status_codes/401/value">
             Type "counter"
+            Instance "httpd_status_codes/401"
         </Key>
-        <Key "httpd_status_codes/403/current">
+        <Key "couchdb/httpd_status_codes/403/value">
             Type "counter"
+            Instance "httpd_status_codes/403"
         </Key>
-        <Key "httpd_status_codes/404/current">
+        <Key "couchdb/httpd_status_codes/404/value">
             Type "counter"
+            Instance "httpd_status_codes/404"
         </Key>
-        <Key "httpd_status_codes/405/current">
+        <Key "couchdb/httpd_status_codes/405/value">
             Type "counter"
+            Instance "httpd_status_codes/405"
         </Key>
-        <Key "httpd_status_codes/409/current">
+        <Key "couchdb/httpd_status_codes/409/value">
             Type "counter"
+            Instance "httpd_status_codes/409"
         </Key>
-        <Key "httpd_status_codes/412/current">
+        <Key "couchdb/httpd_status_codes/412/value">
             Type "counter"
+            Instance "httpd_status_codes/412"
         </Key>
-        <Key "httpd_status_codes/500/current">
+        <Key "couchdb/httpd_status_codes/500/value">
             Type "counter"
+            Instance "httpd_status_codes/500"
         </Key>
     </URL>
 </Plugin>
@@ -111,6 +154,8 @@ LoadPlugin target_replace
         </Target>
         <Target "set">
             Plugin "couchdb"
+            MetaData "stackdriver_metric_type" "custom.googleapis.com/couchdb/%{type_instance}"
+            MetaData "label:service_name" "couchdb"
         </Target>
     </Rule>
     <Rule "rewrite_empty_plugininstance">
@@ -134,4 +179,5 @@ LoadPlugin target_replace
     </Rule>
 </Chain>
 PreCacheChain "PreCache"
-
+EOL
+fi
