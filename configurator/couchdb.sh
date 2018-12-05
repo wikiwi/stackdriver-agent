@@ -28,10 +28,6 @@ LoadPlugin curl_json
             Type "counter"
             Instance "auth_cache_misses"
         </Key>
-        <Key "couchdb/clients_requesting_changes/value">
-            Type "counter"
-            Instance "clients_requesting_changes"
-        </Key>
         <Key "couchdb/database_reads/value">
             Type "counter"
             Instance "database_reads"
@@ -43,6 +39,10 @@ LoadPlugin curl_json
         <Key "couchdb/httpd/bulk_requests/value">
             Type "counter"
             Instance "httpd/bulk_requests"
+        </Key>
+        <Key "couchdb/httpd/clients_requesting_changes/value">
+            Type "counter"
+            Instance "httpd/clients_requesting_changes"
         </Key>
         <Key "couchdb/httpd_request_methods/COPY/value">
             Type "counter"
@@ -149,6 +149,31 @@ LoadPlugin curl_json
         # couchdb/request_time/value/percentile[{50,75,90,95,99,999}] --
         # are not available. Hence, we will not export anything from
         # couchdb/request_time.
+
+        <Key "couch_replicator/checkpoints/failure/value">
+            Type "counter"
+            Instance "replicator/checkpoints/failure"
+        </Key>
+        <Key "couch_replicator/checkpoints/success/value">
+            Type "counter"
+            Instance "replicator/checkpoints/success"
+        </Key>
+        <Key "couch_replicator/cluster_is_stable/value">
+            Type "gauge"
+            Instance "replicator/cluster_is_stable"
+        </Key>
+        <Key "couch_replicator/requests/value">
+            Type "counter"
+            Instance "replicator/requests"
+        </Key>
+        <Key "couch_replicator/responses/failure/value">
+            Type "counter"
+            Instance "replicator/responses/failure"
+        </Key>
+        <Key "couch_replicator/responses/success/value">
+            Type "counter"
+            Instance "replicator/responses/success"
+        </Key>
     </URL>
 </Plugin>
 
