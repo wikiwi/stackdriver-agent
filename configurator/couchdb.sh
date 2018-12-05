@@ -20,42 +20,17 @@ LoadPlugin curl_json
     <URL "${COUCHDB_STATUS_URL}">
         Instance "couchdb"
 
-        <Key "couchdb/database_writes/value">
-            Type "counter"
-            Instance "database_writes"
-        </Key>
         <Key "couchdb/database_reads/value">
             Type "counter"
             Instance "database_reads"
         </Key>
-        <Key "couchdb/open_databases/value">
-            Type "gauge"
-            Instance "open_databases"
+        <Key "couchdb/database_writes/value">
+            Type "counter"
+            Instance "database_writes"
         </Key>
-        <Key "couchdb/open_os_files/value">
-            Type "gauge"
-            Instance "open_os_files"
-        </Key>
-        # couchdb/request_time is a histogram. The values I'd most like
-        # to export as metrics --
-        # couchdb/request_time/value/percentile[{50,75,90,95,99,999}] --
-        # are not available. Hence, we will not export anything from
-        # couchdb/request_time.
         <Key "couchdb/httpd/bulk_requests/value">
             Type "counter"
             Instance "httpd/bulk_requests"
-        </Key>
-        <Key "couchdb/httpd/requests/value">
-            Type "counter"
-            Instance "httpd/requests"
-        </Key>
-        <Key "couchdb/httpd/temporary_view_reads/value">
-            Type "counter"
-            Instance "httpd/temporary_view_reads"
-        </Key>
-        <Key "couchdb/httpd/view_reads/value">
-            Type "counter"
-            Instance "httpd/view_reads"
         </Key>
         <Key "couchdb/httpd_request_methods/COPY/value">
             Type "counter"
@@ -84,6 +59,10 @@ LoadPlugin curl_json
         <Key "couchdb/httpd_request_methods/PUT/value">
             Type "counter"
             Instance "httpd_request_methods/PUT"
+        </Key>
+        <Key "couchdb/httpd/requests/value">
+            Type "counter"
+            Instance "httpd/requests"
         </Key>
         <Key "couchdb/httpd_status_codes/200/value">
             Type "counter"
@@ -137,6 +116,27 @@ LoadPlugin curl_json
             Type "counter"
             Instance "httpd_status_codes/500"
         </Key>
+        <Key "couchdb/httpd/temporary_view_reads/value">
+            Type "counter"
+            Instance "httpd/temporary_view_reads"
+        </Key>
+        <Key "couchdb/httpd/view_reads/value">
+            Type "counter"
+            Instance "httpd/view_reads"
+        </Key>
+        <Key "couchdb/open_databases/value">
+            Type "gauge"
+            Instance "open_databases"
+        </Key>
+        <Key "couchdb/open_os_files/value">
+            Type "gauge"
+            Instance "open_os_files"
+        </Key>
+        # couchdb/request_time is a histogram. The values I'd most like
+        # to export as metrics --
+        # couchdb/request_time/value/percentile[{50,75,90,95,99,999}] --
+        # are not available. Hence, we will not export anything from
+        # couchdb/request_time.
     </URL>
 </Plugin>
 
