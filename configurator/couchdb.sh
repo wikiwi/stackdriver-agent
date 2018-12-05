@@ -20,6 +20,18 @@ LoadPlugin curl_json
     <URL "${COUCHDB_STATUS_URL}">
         Instance "couchdb"
 
+        <Key "couchdb/auth_cache_hits/value">
+            Type "counter"
+            Instance "auth_cache_hits"
+        </Key>
+        <Key "couchdb/auth_cache_misses/value">
+            Type "counter"
+            Instance "auth_cache_misses"
+        </Key>
+        <Key "couchdb/clients_requesting_changes/value">
+            Type "counter"
+            Instance "clients_requesting_changes"
+        </Key>
         <Key "couchdb/database_reads/value">
             Type "counter"
             Instance "database_reads"
