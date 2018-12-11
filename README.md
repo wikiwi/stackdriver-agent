@@ -52,7 +52,7 @@ spec:
   template:
     metadata:
       labels:
-      app: stackdriver-agent
+        app: stackdriver-agent
     spec:
       containers:
       - name: stackdriver-agent
